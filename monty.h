@@ -8,6 +8,11 @@
 #include <fcntl.h>
 #include <string.h>
 #include <ctype.h>
+#include <string.h>
+
+#define EXIT_SUCCESS 0
+#define EXIT_FAILURE 1
+
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -40,5 +45,17 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+
+
+stack_t *stack = NULL;
+
+void push(stack_t **stack, int value, unsigned int line_number);
+void pall(stack_t **stack, unsigned int line_number);
+void pint(stack_t **stack, unsigned int line_number);
+void pop(stack_t **stack, unsigned int line_number);
+void swap(stack_t **stack, unsigned int line_number);
+void add(stack_t **stack, unsigned int line_number);
+void nop(stack_t **stack, unsigned int line_number);
+
 
 #endif
