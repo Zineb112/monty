@@ -1,21 +1,20 @@
 #include "monty.h"
-
 bus_t bus = {NULL, NULL, NULL, 0};
 /**
-* main - monty code interpreter
-* @argc: number of arguments
-* @argv: monty file location
-* Return: 0 on success
+* main - monty code_interpreter
+* @argc: nbr of arg
+* @argv: monty file loction
+* Return: 0 if  success
 */
 int main(int argc, char *argv[])
 {
-	char *content;
+	char *contnt;
 	FILE *file;
 	size_t size = 0;
 	ssize_t read_line = 1;
 	stack_t *stack = NULL;
-	unsigned int counter = 0;
-
+	unsigned int cntr = 0;
+	
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
@@ -30,17 +29,17 @@ int main(int argc, char *argv[])
 	}
 	while (read_line > 0)
 	{
-		content = NULL;
-		read_line = getline(&content, &size, file);
-		bus.content = content;
-		counter++;
+		contnt = NULL;
+		read_line = getline(&contnt, &size, file);
+		bus.contnt = contnt;
+		cntr++;
 		if (read_line > 0)
 		{
-			execute(content, &stack, counter, file);
+			execute(contnt, &stack, cntr, file);
 		}
-		free(content);
+		free(contnt);
 	}
 	free_stack(stack);
 	fclose(file);
-return (0);
+	return (0);
 }
