@@ -1,43 +1,65 @@
 #include "monty.h"
 
 /**
- * push - add elements to the stack.
- * @stack: double pointr.
- * @value: int.
- * @line_number: unsigned int.
- * Return: new elemznt address.
- */
-void push(stack_t **stack, int value, unsigned int line_number)
+ * my_push - add_node to stack.
+ * @head_stk: stack_head_stk.
+ * @cntr: line_nbr.
+*/
+void my_push(stack_t **head_stk, unsigned int cntr)
 {
-	stack_t *new_node = (stack_t *)malloc(sizeof(stack_t));
+	int n, j = 0, flag = 0;
 
-	if (new_node == NULL)
+	if (bus.arg)
 	{
-		fprintf(stderr, "Error: malloc failed\n");
+		if (bus.arg[0] == '-')
+			j++;
+		for (; bus.arg[j] != '\0'; j++)
+		{
+			if (bus.arg[j] > 57 || bus.arg[j] < 48)
+				flag = 1;
+		}
+		if (flag == 1)
+		{
+			fprintf(stderr, "L%d: usage: push integer\n", cntr);
+			fclose(bus.file);
+			free(bus.contnt);
+			free_stack(*head_stk);
+			exit(EXIT_FAILURE);
+		}
+	}
+	else
+	{
+		fprintf(stderr, "L%d: usage: push integer\n", cntr);
+		fclose(bus.file);
+		free(bus.contnt);
+		free_stack(*head_stk);
 		exit(EXIT_FAILURE);
 	}
-
-	new_node->n = value;
-	new_node->prev = NULL;
-	new_node->next = *stack;
-
-	if (*stack != NULL)
-		(*stack)->prev = new_node;
-	*stack = new_node;
+	n = atoi(bus.arg);
+	if (bus.flg_lifi == 0)
+		add_nod(head_stk, n);
+	else
+		add_qu(head_stk, n);
 }
 
-/**
- * pall - print elements to the stack.
- * @stack: double pointr.
- * @line_number: unsigned int.
- */
-void pall(stack_t **stack, unsigned int line_number)
-{
-	stack_t *current = *stack;
 
-	while (current != NULL)
+/**
+ * my_pall - prints stack
+ * @head_stk: stack head_stk
+ * @cntr: un_used
+ * Return: nothing
+*/
+void my_pall(stack_t **head_stk, unsigned int cntr)
+{
+	stack_t *h;
+	(void)cntr;
+
+	h = *head_stk;
+	if (h == NULL)
+		return;
+	while (h)
 	{
-		printf("%d\n", current->n);
-		current = current->next;
+		printf("%d\n", h->n);
+		h = h->next;
 	}
 }
