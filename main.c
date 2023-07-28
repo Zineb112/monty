@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
 	while (read_line > 0)
 	{
 		contnt = NULL;
-		read_line = getline(&contnt, &size, file);
+		read_line = _getline(&contnt, &size, file);
 		bus.contnt = contnt;
 		cntr++;
 		if (read_line > 0)
