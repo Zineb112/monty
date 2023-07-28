@@ -79,6 +79,7 @@ void add_nod(stack_t **head_stk, int n);
 void add_qu(stack_t **head_stk, int n);
 void my_queue(stack_t **head_stk, unsigned int cntr);
 void my_stack(stack_t **head_stk, unsigned int cntr);
+ssize_t _getline(char **ln_ptr, size_t *n, FILE *strm);
 
 #endif
 
