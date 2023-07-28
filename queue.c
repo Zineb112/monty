@@ -13,11 +13,10 @@ void my_queue(stack_t **head_stk, unsigned int cntr)
 }
 
 /**
- * add_qu – add_node to the tail stack
- * @n: new_value
- * @head_stk: head  of stack
- * Return: nothing
-*/
+ * add_qu - add a node to the stack tail.
+ * @head_stk: the satck head.
+ * @n: new int value.
+ */
 void add_qu(stack_t **head_stk, int n)
 {
 	stack_t *new_node, *auxx;
